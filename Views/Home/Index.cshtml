@@ -1,0 +1,49 @@
+﻿<style>
+    .jumbotron {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+    }
+
+        .jumbotron img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+    .background {
+        position: relative;
+    }
+
+    .widget-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: white;
+        background-color: orange;
+        padding: 20px;
+        z-index: 1;
+        border-radius: 50%;
+    }
+
+        .widget-container p {
+            margin: 0;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+        }
+</style>
+
+<div class="jumbotron text-center">
+    <h1 class="display-4">Система для удобства прохождения производственной практики для перспективных студентов</h1>
+    <p class="lead">Познакомьтесь с миром реальных задач и приобретите ценный опыт.</p>
+    <div class="background">
+        <img src="~/images/girl.jpg" alt="Landing Page Image">
+        <div class="widget-container">
+            <p>Полностью онлайн</p>
+        </div>
+    </div>
+    <div class="button-container">
+        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Login">Начать</a>
+    </div>
+</div>

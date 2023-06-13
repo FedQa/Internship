@@ -1,0 +1,89 @@
+﻿@page
+@model Internship.Areas.Identity.Pages.Account.LoginModel
+
+<div class="login-wrapper">
+    <div class="login-form col-md-4">
+        <section>
+            <form id="account" method="post">
+                <h2>Вход в систему</h2>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label-log">Эл. почта</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label-pass">Пароль</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe" class="form-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                            Запомнить меня
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Войти</button>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Забыли пароль?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-page-model="LoginModel" asp-route-returnUrl="@Model.ReturnUrl">Зарегистироваться</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<style>
+    body {
+        background: linear-gradient(68.6deg, #1023D2 6.91%, #8453D4 91.13%);
+    }
+
+    a {
+        color: white;
+    }
+
+    .form-label {
+        color: white;
+    }
+
+    .form-label-log {
+        font-size: 22px;
+        display: flex;
+    }
+
+    .form-label-pass {
+        font-size: 22px;
+        display: flex;
+    }
+
+    .login-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-form {
+        text-align: center;
+    }
+
+    h2 {
+        color: white;
+    }
+
+    .form-floating + .form-floating {
+        margin-top: 1rem;
+    }
+
+</style>

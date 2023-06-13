@@ -1,0 +1,24 @@
+﻿@model FilesViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Просмотр файлов студента <br />@Model.Student.Name @Model.Student.Patronymic @Model.Student.Surname ПИ-19-@Model.Student.GroupId</h1>
+
+@if (Model.Files.Count > 0)
+{
+    <ul class="list-group">
+        @foreach (var file in Model.Files)
+        {
+            <li class="list-group-item">
+                <a href="@Url.Action("Download", "Home", new { filename = file.Name })">@file.Name</a>
+            </li>
+        }
+    </ul>
+
+}
+else
+{
+    <p class="alert alert-info">Нет загруженных файлов.</p>
+}

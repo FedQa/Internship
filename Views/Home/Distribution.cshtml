@@ -1,0 +1,48 @@
+﻿@model Internship.Models.DistributionViewModel
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Распределение студентов</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Группа</th>
+                <th>Средний балл</th>
+                <th>Приоритет</th>
+                <th class="table-success">Компания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@student.Name</td>
+                    <td>@student.Surname</td>
+                    <td>@student.GroupId</td>
+                    <td>@student.Gpa</td>
+                    <td>@student.Priority</td>
+                    <td class="table-success">@student.CompanyName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="send">
+    <button class="btn btn-primary" id="sendButton">Отправить список распределения студентам</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#sendButton').click(function () {
+            alert('Список успешно отправлен студентам!');
+        });
+    });
+</script>

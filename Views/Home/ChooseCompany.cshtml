@@ -1,0 +1,226 @@
+﻿@model IEnumerable<Internship.Models.Company>
+@{
+    Layout = "_LayoutStudent";
+}
+
+<h1>Компании</h1>
+
+<div class="widget-container">
+    <div class="widget">
+        <div class="widget-image" style="background-image: url('/images/greendata.jpg')"></div>
+        <div class="widget-content">
+            <h2 onclick="openConfirmationModal('@Model.ElementAt(0).Name', 0)" style="cursor: pointer">@Model.ElementAt(0).Name</h2>
+            <p>@Model.ElementAt(0).Description</p>
+        </div>
+        <div id="confirmationModal_0" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('confirmationModal_0')">&times;</span>
+                <h2>Подтверждение отклика</h2>
+                <p>Вы уверены, что хотите отправить отклик в компанию @Model.ElementAt(0).Name?</p>
+                <button onclick="submitResponse(1)">Отправить отклик</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget">
+        <div class="widget-image" style="background-image: url('/images/xsolla.jpg')"></div>
+        <div class="widget-content">
+            <h2 onclick="openConfirmationModal('@Model.ElementAt(1).Name', 1)" style="cursor: pointer">@Model.ElementAt(1).Name</h2>
+            <p>@Model.ElementAt(1).Description</p>
+        </div>
+        <div id="confirmationModal_1" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('confirmationModal_1')">&times;</span>
+                <h2>Подтверждение отклика</h2>
+                <p>Вы уверены, что хотите отправить отклик в компанию @Model.ElementAt(1).Name?</p>
+                <button onclick="submitResponse(2)">Отправить отклик</button>
+            </div>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-image" style="background-image: url('/images/parma.jpg')"></div>
+        <div class="widget-content">
+            <h2 onclick="openConfirmationModal('@Model.ElementAt(2).Name', 2)" style="cursor: pointer">@Model.ElementAt(2).Name</h2>
+            <p>@Model.ElementAt(2).Description</p>
+        </div>
+        <div id="confirmationModal_2" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('confirmationModal_2')">&times;</span>
+                <h2>Подтверждение отклика</h2>
+                <p>Вы уверены, что хотите отправить отклик в компанию @Model.ElementAt(2).Name?</p>
+                <button onclick="submitResponse(3)">Отправить отклик</button>
+            </div>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-image" style="background-image: url('/images/veb.png')"></div>
+        <div class="widget-content">
+            <h2 onclick="openConfirmationModal('@Model.ElementAt(3).Name', 3)" style="cursor: pointer">@Model.ElementAt(3).Name</h2>
+            <p>@Model.ElementAt(3).Description</p>
+        </div>
+        <div id="confirmationModal_3" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('confirmationModal_3')">&times;</span>
+                <h2>Подтверждение отклика</h2>
+                <p>Вы уверены, что хотите отправить отклик в компанию @Model.ElementAt(3).Name?</p>
+                <button onclick="submitResponse(4)">Отправить отклик</button>
+            </div>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-image" style="background-image: url('/images/ibs.jpg')"></div>
+        <div class="widget-content">
+            <h2 onclick="openConfirmationModal('@Model.ElementAt(4).Name', 4)" style="cursor: pointer">@Model.ElementAt(4).Name</h2>
+            <p>@Model.ElementAt(4).Description</p>
+        </div>
+        <div id="confirmationModal_4" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('confirmationModal_4')">&times;</span>
+                <h2>Подтверждение отклика</h2>
+                <p>Вы уверены, что хотите отправить отклик в компанию @Model.ElementAt(4).Name?</p>
+                <button onclick="submitResponse(5)">Отправить отклик</button>
+            </div>
+        </div>
+    </div>
+    <div class="widget">
+        <div class="widget-image" style="background-image: url('/images/lukoil.jpg')"></div>
+        <div class="widget-content">
+            <h2 onclick="openConfirmationModal('@Model.ElementAt(5).Name', 5)" style="cursor: pointer">@Model.ElementAt(5).Name</h2>
+            <p>@Model.ElementAt(5).Description</p>
+        </div>
+        <div id="confirmationModal_5" class="modal">
+            <div class="modal-content">
+                <span class="close-button" onclick="closeModal('confirmationModal_5')">&times;</span>
+                <h2>Подтверждение отклика</h2>
+                <p>Вы уверены, что хотите отправить отклик в компанию @Model.ElementAt(5).Name?</p>
+                <button onclick="submitResponse(6)">Отправить отклик</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .widget-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .widget {
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .widget-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .widget-content {
+        padding: 10px;
+    }
+
+    .widget h2 {
+        margin-top: 0;
+    }
+
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        background-color: rgba(74, 144, 226, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        width: 50%;
+        max-width: 500px;
+        height: 50%;
+        max-height: 300px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }
+    .modal-content {
+        text-align: center;
+    }
+        .modal-content p {
+            margin: 0;
+        }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        color: orange;
+        cursor: pointer;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 0; 
+    }
+</style>
+
+<script>
+    function openConfirmationModal(companyName, index) {
+        var modal = document.getElementById('confirmationModal_' + index);
+        modal.style.display = 'block'; 
+
+        var overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        var closeButton = document.querySelector('.close-button');
+        closeButton.addEventListener('click', function () {
+            closeModal('confirmationModal_' + index);
+        });
+    }
+
+    function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.classList.add('fade-out'); 
+
+        var overlay = document.querySelector('.overlay');
+        overlay.parentNode.removeChild(overlay);
+    }
+
+
+    function submitResponse(companyId, studentId) {
+        var application = {
+            CompanyId: companyId,
+            StudentId: studentId
+        };
+
+        $.ajax({
+            url: '/Home/SubmitApplication',
+            type: 'POST',
+            data: application,
+            success: function () {
+                alert('Отклик успешно отправлен!');
+                location.reload(); 
+            },
+            error: function () {
+                alert('Произошла ошибка при отправке отклика.');
+            }
+        });
+
+        var modal = document.getElementById('confirmationModal_' + companyId);
+        modal.style.display = 'none';
+        var overlay = document.querySelector('.overlay');
+        overlay.parentNode.removeChild(overlay);
+    }
+</script>

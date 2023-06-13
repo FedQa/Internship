@@ -1,0 +1,33 @@
+﻿@model Internship.Models.FilesViewModel
+
+@{
+    Layout = "_LayoutStudent";
+}
+
+<h1>Загрузка документов</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <input class="form-control" type="file" name="files" multiple placeholder="Выберете файлы" title="Ни один файл не выбран" />
+    </div>
+    <button class="btn btn-primary" type="submit">Загрузить</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success mt-4">
+        @ViewBag.Message
+    </div>
+}
+
+<h4 class="mt-4">Список файлов</h4>
+<ul class="list-group">
+    @foreach (var item in Model.Files)
+    {
+        <li class="list-group-item">
+            <a asp-action="Download" asp-route-filename="@item.Name" target="_blank">
+                @item.Name
+            </a>
+        </li>
+    }
+</ul>

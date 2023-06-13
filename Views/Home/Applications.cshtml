@@ -1,0 +1,59 @@
+﻿@model List<ApplicationViewModel>
+
+@{
+    Layout = "_LayoutStudent";
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+@foreach (var viewModel in Model.Where(a => a.Application.IdStudent ==1))
+{
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Заявка в компанию</h4>
+            <p class="card-text"><strong>Название компании:</strong> @viewModel.Company.Name</p>
+            <p class="card-text"><strong>Описание компании:</strong> @viewModel.Company.Description</p>
+            <p class="card-text"><strong>Дата отклика:</strong> @viewModel.Application.ApplicationDate</p>
+            <p class="card-text"><strong>Статус:</strong> @viewModel.Application.Status</p>
+            <p class="card-text"><strong>Приоритет:</strong> <span id="priority-@viewModel.Application.IdApplication">@viewModel.Application.Priority</span></p>
+            <input type="number" class="form-control" data-application-id="@viewModel.Application.IdApplication" id="priority-input-@viewModel.Application.IdApplication">
+            <button type="button" class="btn btn-primary change-priority" data-application-id="@viewModel.Application.IdApplication">Изменить приоритет</button>
+            <button type="button" class="btn btn-danger delete-application" data-application-id="@viewModel.Application.IdApplication">Удалить заявку</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.change-priority').click(function () {
+                var applicationId = $(this).data('application-id');
+                var priority = $('#priority-input-' + applicationId).val();
+                $.ajax({
+                    url: '/Home/ChangePriority',
+                    type: 'POST',
+                    data: { applicationId: applicationId, priority: priority },
+                    success: function () {
+                        $('#priority-' + applicationId).text(priority);
+                        $('#priority-input-' + applicationId).val('');
+                    }
+                });
+            });
+
+            $('.delete-application').click(function () {
+                var applicationId = $(this).data('application-id');
+                if (confirm('Вы уверены, что хотите удалить заявку?')) {
+                    $.ajax({
+                        url: '/Home/DeleteApplication',
+                        type: 'POST',
+                        data: { applicationId: applicationId },
+                        success: function () {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
